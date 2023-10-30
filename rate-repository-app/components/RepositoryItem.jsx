@@ -16,11 +16,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 5,
-    fontFamily: theme.fonts.main
   },
   description: {
     color: theme.colors.textSecondary,
-    fontFamily: theme.fonts.main
   },
   detailsContainer: {
     flexDirection: 'row',
@@ -33,7 +31,6 @@ const styles = StyleSheet.create({
   },
   detailLabel: {
     fontWeight: 'bold',
-    fontFamily: theme.fonts.main
   },
   languageButtonContainer: {
     flexDirection: 'row',
@@ -44,7 +41,6 @@ const styles = StyleSheet.create({
     color: 'white',
     padding: 5,
     borderRadius: 5,
-    fontFamily: theme.fonts.main
   }
 });
 
