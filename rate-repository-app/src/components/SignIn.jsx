@@ -3,7 +3,7 @@ import { View, Pressable, StyleSheet } from 'react-native';
 import { Formik } from 'formik';
 import Text from './Text';
 import FormikTextInput from './FormikTextInput';
-import theme from '../theme';
+import theme from '../utils/theme';
 import Constants from 'expo-constants';
 import * as yup from 'yup'
 

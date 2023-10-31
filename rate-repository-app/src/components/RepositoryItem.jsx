@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
-import theme from '../theme';
+import theme from '../utils/theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,6 +19,10 @@ const styles = StyleSheet.create({
   },
   description: {
     color: theme.colors.textSecondary,
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    maxWidth: 300,
   },
   detailsContainer: {
     flexDirection: 'row',

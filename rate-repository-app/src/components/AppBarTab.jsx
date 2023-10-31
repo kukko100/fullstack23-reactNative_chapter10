@@ -1,6 +1,6 @@
 const { Pressable, StyleSheet, Text } = require("react-native")
 import { Link } from 'react-router-native';
-import theme from '../theme';
+import theme from '../utils/theme';
 
 const styles = StyleSheet.create({
   tabA: {
