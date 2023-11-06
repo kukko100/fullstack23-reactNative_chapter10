@@ -1,14 +1,32 @@
-import { gql } from '@apollo/client';
-import { ALL_FIELDS_FRAGMENT } from './fragments';
+import { gql } from 'graphql-tag';
 
-const YOUR_QUERY = gql`
-  query Query {
+export const GET_REPOSITORIES = gql`
+  query {
     repositories {
       edges {
+        cursor
         node {
-          ...${ALL_FIELDS_FRAGMENT}
+          id
+          name
+          ownerName
+          createdAt
+          fullName
+          reviewCount
+          ratingAverage
+          forksCount
+          stargazersCount
+          description
+          language
+          ownerAvatarUrl
         }
       }
     }
-  }
-`;
+  }`;
+
+  export const ME = gql`
+    query {
+      me {
+        id
+        username
+      }
+    }`;

@@ -6,6 +6,10 @@ import FormikTextInput from './FormikTextInput';
 import theme from '../utils/theme';
 import Constants from 'expo-constants';
 import * as yup from 'yup'
+import useSignIn from '../hooks/useSignIn';
+import { useNavigate } from 'react-router-native';
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -37,12 +41,25 @@ const validationSchema = yup.object().shape({
 
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const initialValues = {
     username: '',
+    password: ''
   };
 
-  const handleSignIn = (values) => {
-    console.log('Sign-in values:', values);
+  const [signIn] = useSignIn();
+
+  const handleSignIn = async (values) => {
+    const { username, password } = values;
+
+    try {
+      const result = await signIn({ username, password });
+      if (result instanceof Error === false) {
+        navigate('/');
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

@@ -1,7 +1,9 @@
 import { FlatList, View, StyleSheet } from 'react-native';
 import RepositoryItem from './RepositoryItem';
-import useRepositories from '../hooks/useRepositories'
 import { useQuery } from '@apollo/client';
+import { GET_REPOSITORIES } from '../graphql/queries';
+import AuthStorageContext from '../contexts/AuthStorageContext';
+import { useContext, useState } from 'react';
 
 const styles = StyleSheet.create({
   separator: {
@@ -12,11 +14,23 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const RepositoryList = () => {
-  const { repositories } = useRepositories();
+const getToken = async() => {
+  const authStorage = useContext(AuthStorageContext);
+  const token = await authStorage.getAccessToken();
+  return token;
+}
 
-  const repositoryNodes = repositories
-    ? repositories.edges.map(edge => edge.node)
+
+const RepositoryList = () => {
+  const [token, setToken] = useState('');
+  getToken().then((token) => {
+    setToken(token)
+  });
+  const {data, error, loading} = useQuery(GET_REPOSITORIES, { fetchPolicy: 'cache-and-network'});
+
+
+  const repositoryNodes = data
+    ? data.repositories.edges.map((edge) => edge.node)
     : [];
 
   return (
