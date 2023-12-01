@@ -1,9 +1,10 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 import { Link } from 'react-router-native';
-import theme from '../utils/theme';
+import theme from '../../utils/theme';
 import { useApolloClient } from '@apollo/client';
 import { useContext } from "react";
-import AuthStorageContext from "../contexts/AuthStorageContext";
+import AuthStorageContext from "../../contexts/AuthStorageContext";
+import { useNavigate } from 'react-router-native';
 
 const styles = StyleSheet.create({
   tabA: {
@@ -16,12 +17,14 @@ const styles = StyleSheet.create({
 });
 
 const LogOutButton = ({ tabName, linkName }) => {
+  const navigate = useNavigate();
   const client = useApolloClient();
   const authStorage = useContext(AuthStorageContext);
 
   const handleLogout = async () => {
     authStorage.removeAccessToken()
     client.resetStore();
+    navigate("/");
   };
 
   return (

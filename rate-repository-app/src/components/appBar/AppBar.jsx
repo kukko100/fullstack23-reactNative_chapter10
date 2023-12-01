@@ -1,15 +1,15 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, Text } from 'react-native';
 import Constants from 'expo-constants';
-import theme from '../utils/theme';
+import theme from '../../utils/theme';
 import AppBarTab from './AppBarTab';
 import AppBarText from './AppBarText'
-import AuthStorageContext from '../contexts/AuthStorageContext';
+import AuthStorageContext from '../../contexts/AuthStorageContext';
 import { useContext, useState } from 'react';
-import { ME } from '../graphql/queries'
+import { ME } from '../../graphql/queries'
 import { useQuery } from '@apollo/client';
 import { useEffect } from 'react';
-import LogOutButton from './LogOutButton';
+import LogOutButton from '../userControl/LogOutButton';
 
 
 const styles = StyleSheet.create({
@@ -54,11 +54,16 @@ const AppBar = () => {
         <AppBarTab tabName={"Repositories"} linkName={"/"} />
         {loggedInUser ? (
           <>
+            <AppBarTab tabName={"Create review"} linkName={"/createReview"} />
             <LogOutButton tabName={"Sign out"} />
-            <AppBarText tabName={loggedInUser} />
+            <AppBarTab tabName={loggedInUser} linkName={"/userView"} />
           </>
         ) : (
-          <AppBarTab tabName={"Sign in"} linkName={"/signIn"} />
+          <>
+            <AppBarTab tabName={"Sign in"} linkName={"/signIn"} />
+            <AppBarTab tabName={"Sign up"} linkName={"/signUp"} />
+          </>
+          
         )}
       </ScrollView>
     </View>

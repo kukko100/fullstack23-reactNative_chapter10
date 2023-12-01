@@ -6,8 +6,10 @@ const theme = {
     appBar: 'grey',
     appBarFont: 'white',
     itemLanguageButton: '#0762D2',
+    redButton: '#D6394C',
     languageButtonFont: 'white',
-    textError: '#d73a4a'
+    textError: '#d73a4a',
+    furthestBackground: '#E1E5E8'
   },
   fontSizes: {
     body: 14,
